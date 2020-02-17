@@ -7,8 +7,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/as27/dpunkt_go_buch/code/projekte/projekt1_site_generator/page"
-	"github.com/as27/dpunkt_go_buch/code/projekte/projekt1_site_generator/simpletext"
+	"github.com/as27/ffmws2020/ProjektSiteGenerator/page"
+	"github.com/as27/ffmws2020/ProjektSiteGenerator/simpletext"
 )
 
 func loadPages(fpaths ...string) ([]page.Page, error) {

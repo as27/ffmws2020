@@ -9,7 +9,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/as27/dpunkt_go_buch/code/projekte/projekt1_site_generator/page"
+	"github.com/as27/ffmws2020/ProjektSiteGenerator/page"
 )
 
 var (
