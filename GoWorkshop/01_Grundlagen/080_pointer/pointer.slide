@@ -1,0 +1,64 @@
+Pointer und Variablen
+01 Grundlagen
+
+Andreas Schröpfer
+@lyckade
+
+* Variablen
+
+- jede Variable hat einen Typ
+- einen Wert
+- eine Adresse im Arbeitsspeicher
+
+Der Typ legt fest, wie eine Variable im Arbeitsspeicher abgebildet wird. Über die Adresse wird der Speicher wieder gefunden.
+
+* Variable vom Typ Pointer
+
+- Eine Variable kann vom Typ auch ein Zeiger (=Pointer) sein
+- Der Pointer zeigt auf eine Adresse im Arbeitsspeicher
+- Über den Pointer kann auch auf den Wert im Arbeitsspeicher zugegriffen werden
+- Beliebig viele Variablen können so auf den gleichen Bereich im Arbeitsspeicher zeigen
+
+* Deklaration
+
+  // Pointer auf User
+  a := &User{}
+
+  b := int(1)
+  c := &b  // Pointer auf b
+
+  // Deklaration in Typdefinition
+  type Admin {
+      User *User 
+      ...
+  }
+
+* Dereferenzierung
+
+- eine Variable vom Typ Pointer beinhaltet nur die Adresse für den Arbeitsspeicher
+- Zugriff auf den Wert direkt nicht möglich
+- Hierfür muss die Variable dereferenziert werden
+
+  a := 1
+  b := &a 
+  *b = 2 // Dereferenzierung * Vorangestellt
+
+* Beispiel
+
+.play slide/var/main.go /START OMIT/,/END OMIT/
+
+* Eigener Typ
+
+- Go unterscheidet zwischen Methoden für Pointer und für nicht Pointer
+
+  func (u User) SetName(name string){}
+  func (u *User) SetName(name string){}
+
+Häufiger Fehler z.B. bei bytes.Buffer der io.Reader und io.Writer ist nur für den Pointer implementiert.
+
+  func (b *Buffer) Read(p []byte) (n int, err error)
+
+Beispiel bytes.Buffer
+
+  b := bytes.Buffer{}  // kann zu Fehlern führen
+  b := &bytes.Buffer{} // richtig als Pointer anlegen

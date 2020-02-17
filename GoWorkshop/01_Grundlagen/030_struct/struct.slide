@@ -1,0 +1,18 @@
+struct
+01 Grundlagen
+
+Andreas Schröpfer
+@lyckade
+
+
+* Einführung
+
+- Neben den Basistypen können auch Strukturen als Typ definiert werden
+- Eine Struktur beinhaltet mehrere Felder
+- Die Definition erfolgt über {}
+
+.code 02_beispiele/temperatur.go
+
+* Definition
+
+.play 02_beispiele/user.go

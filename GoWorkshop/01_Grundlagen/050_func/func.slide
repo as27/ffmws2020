@@ -1,0 +1,118 @@
+func
+01 Grundlagen
+
+Andreas Schröpfer
+@lyckade
+
+* Funktionen
+
+* Deklaration
+
+- Deklaration mit dem Wort *func*
+- Alle Inputwerte müssen mit dem Typ definiert sein
+- Alle Outputwerte müssen mit dem Type definiert sein
+- Mehrere Outputwerte möglich
+
+
+* Deklaration
+
+.play slide/add/main.go
+
+* Deklaration mit eigenen Typen
+
+.play slide/temp/main.go
+
+
+* Funktionen mit mehreren Outputs
+
+- eine Funktion kann beliebig viele Output Werte haben
+    func swap(a,b int) (int, int){
+        return b, a
+    }
+- der letzte Output Parameter beinhaltet meist Fehler oder Erfolgsmeldungen
+- Auf Empfängerseite kann mit _ Werte ausgelassen werden
+
+    func div(a, b float32) (float32, bool) { ... }
+    func main() {
+        ...
+        a, _ := div(12/2)
+        ...
+    }
+
+* Funktionen mit mehreren Outputs
+
+.play slide/div/main.go
+
+* defer 
+
+- defer wird Aufgerufen, wenn eine Funktion beendet wird
+- wird zum Aufräumen verwendet
+- nicht immer sinnvoll
+
+.play slide/defer/main.go
+
+* Fehlerbehandlung
+
+- Fehler in Go sind Strings 
+.link https://golang.org/pkg/builtin/#error
+
+- Funktionen sollten Fehler durchreichen
+
+    func myFunc() error {
+        // Funktionsaufruf mit möglichen Fehler
+        b, err := ioutil.ReadFile("conf.json")
+        if err != nil {
+            return err
+        }
+        ...
+    }
+
+* Variadische Funktionen
+
+- sind Funktionen, welche beliebig viele Inputwerte verarbeiten kann.
+
+    // Beispiel ist fmt.Println()
+    fmt.Println("Eins", "Zwei", "Drei", "...")
+
+- Definition erfolgt über "..." for dem Typ
+- Inerhalb der Funktion ist dies ein slice des Typs
+
+    func sum(vals ...int) int {
+        total := 0
+        for _, val := range vals {
+            total += val
+        }
+        return total
+    }
+
+* Variadische Funktionen 2
+
+- Aufruf einer variadischen Funktion mit einem Slice eines Typs
+- "..." wird der Variablen angehängt 
+
+    a := []int{1, 2, 3}
+    sum(a...)
+
+* Beispiel sum()
+
+.play slide/sum/main.go
+
+* Anonyme Funktionen
+
+- Benannte Funktionen können nur auf oberster Ebene des Packets definiert werden.
+- innerhalb einer Funktion können anonyme Funktionen definiert werden.
+- Funktionen stellen dabei auch Datentypen dar (first class citizens)
+- Anwendung bei Erstellung von Go Routinen
+- Anwendung für funktionale Programmierung
+
+* Anwendung Go Routinen
+
+.play slide/goroutines/main.go
+
+* Anwendung funktionale Programmierung addN
+
+.play slide/addN/main.go
+
+* Anwendung mit closures
+
+.play slide/closure/main.go

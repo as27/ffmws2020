@@ -1,0 +1,34 @@
+flag Packet
+02 Standardlib
+
+Andreas Schröpfer
+@lyckade
+
+* Das flag Packet
+
+- Für Programme, welche über die Kommandozeile ausgeführt werden.
+- Einfache CLI (command-line interface) Funktionen
+- Einfache API
+
+  var ip = flag.Int("flagname", 1234, "help message for flagname")
+
+* Verwendung
+
+- Definition der einzelnen Flags
+- !!! Aufruf von flag.Parse() nach der Definition !!!
+- Die Funktionen geben immer einen Pointer zurück. Beim Auslesen des Wertes benötigt man eine Dereferenzierung
+
+  var ip = flag.Int("flagname", 1234, "help message for flagname")
+  flag.Parse()
+  fmt.Println(ip)  // gibt die Speicheradresse ausgeführt
+  fmt.Println(*ip) // gibt den Wert zurück
+
+* Alternative: Cobra 
+
+Für komplexe Programme kann das Tool _Cobra_ verwendet werden. Dieses ist im Go Bereich weit verbreitet. Kubernetes oder Docker verwenden Cobra als CLI Basis.
+
+Durch die Abhängigkeiten von Cobra werden die Programme dabei ca. 7MB größer. 
+
+Wenn möglich sollte man deshalb das flag Packet verwenden.
+
+.link https://github.com/spf13/cobra

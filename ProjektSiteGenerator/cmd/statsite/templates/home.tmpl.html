@@ -1,0 +1,9 @@
+{{ define "content" }}
+<h1>Übersicht</h1>
+
+<ul>
+    {{ range .Pages }}
+    <li><a href="{{.Path}}/index.html">{{ .Header.Title }}</a></li>
+    {{ end }}
+</ul>
+{{ end }}

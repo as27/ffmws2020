@@ -1,0 +1,101 @@
+Interfaces
+01 Grundlagen
+
+Andreas Schröpfer
+@lyckade
+
+* Interfaces
+
+
+Die Schnittstelle oder das Interface ist der Teil eines Systems, welches der Kommunikation dient.
+
+.link https://de.wikipedia.org/wiki/Schnittstelle Wikipedia
+
+In Go beschreibt ein Interface die Eigenschaften, welche ein Typ besitzen muss.
+
+* Sprechweise
+
+Typ User implementiert das Stringer Interface
+
+Type user implements the stringer interface
+
+* Definition
+
+- In Go sind die Interfaces möglichst klein zu halten. 
+- Bei nur einer Methode wird dem Methodenname ein _er_ angehängt.
+- Bei der Deklaration müssen die Typen angegeben werden. Dies definiert das Layout im Arbeitsspeicher
+
+  // Stringer returns a string representation of the type 
+  type Stringer interface {
+  	String() string
+  }
+
+- jeder Typ, welcher nun diese Methode besitzt implementiert automatisch dieses Interface
+- im Code muss nicht explizit angegeben werden, dass ein Interface implementiert wird
+
+* Interfaces als Input
+
+Funktionen sollen wenn möglich Interfaces als Eingangswerte verwenden. Dadurch ist es möglich unterschiedliche Typen für diese Funktion zu verwenden.
+
+  
+* Beispiel Definition Interface
+
+.code slide/geo/main.go /START1 OMIT/,/END1 OMIT/  
+
+* Beispiel Implementierung Rechteck
+
+.code slide/geo/main.go /START2 OMIT/,/END2 OMIT/  
+
+* Beispiel Implementierung Dreieck
+
+.play slide/geo/main.go /START3 OMIT/,/END3 OMIT/ 
+
+* Abstraktion
+
+- Interfaces eignen sich gut Funktionen zu abstrahieren (Single Responsibility Principle)
+- Interfaces ermöglichen Tests der Funktion ohne die Implementierung zu benötigen.
+
+
+* Ausgewählte Interfaces: error Interface
+
+Definition des error Interfaces im builtin Packet
+
+.link https://golang.org/pkg/builtin/#error
+
+  type error interface {
+        Error() string
+  }
+
+
+* Ausgewählte Interfaces: io.Reader und io.Writer
+
+- eine der wichtigsten Interfaces in Go
+- abstrahieren alle Lese- und Schreibvorgänge
+- Anwendung: Files, Netzwerk, HTTP Server, Bilder, ...
+
+  type Reader interface {
+        Read(p []byte) (n int, err error)
+  }
+  type Writer interface {
+        Write(p []byte) (n int, err error)
+  }
+
+* Ausgewählte Interfaces: http.ResponseWriter
+  
+  type ResponseWriter interface {
+        // Header returns the header map that will be sent by
+        // WriteHeader. The Header map also is the mechanism with which
+        // Handlers can set HTTP trailers.
+        Header() Header
+
+        // Write writes the data to the connection as part of an HTTP reply.
+      
+        Write([]byte) (int, error)
+
+        // WriteHeader sends an HTTP response header with status code.
+        WriteHeader(int)
+  }
+
+- ResponseWriter implementiert automatisch einen io.Writer! 
+
+.link https://golang.org/pkg/net/http/#ResponseWriter

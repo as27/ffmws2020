@@ -1,0 +1,89 @@
+Packages
+01 Grundlagen
+
+Andreas Schröpfer
+@lyckade
+
+* Packages
+
+- In Go werden kleine für sich abgeschlossene Einheiten als Packet (package) bezeichnet. In JavaScript ist der Name dafür Modul.
+- Alle in einer Datei benötigten Packete werden über den Befehl import eingebunden.
+- go fmt kann über das Tool goimport auch die benötigten Packete ergänzen.
+- normalerweise kümmert man sich nicht über die Importe, da das Tooling diese Aufgabe übernimmt.
+- in VS Code funktioniert dies auch automatisch
+
+* Standardpackete
+
+- auch standard library genannt
+- ausführliche Dokumentation unter golang.org vorhanden
+
+.link https://golang.org/pkg/
+
+- in der Regel reichen die Standardpackete aus
+
+* externe Packete
+
+- externe Packete können am Besten über godoc.org gefunden werden
+- godoc bietet auch zeitgleich eine Dokumentation an 
+
+.link https://godoc.org/
+
+Installation externer Packete erfolgt über go get:
+
+  go get github.com/gorilla/mux
+
+* eigene Packete
+
+- in Go sind Typen, Variablen oder Funktionen entweder *unexported* oder *exported*
+- *exported* werden Gross geschrieben und sind außerhalb sichtbar (public)
+- *unexported* werden klein geschrieben und sind außerhalb des Packetes nicht nutzbar (private)
+- das gilt für alle Namen
+
+    var ExportedVar = 1
+    var unexportedVar = 10
+
+    type User struct{
+        Name   string
+        secret string
+    }
+    
+    func NewUser() *User{...}
+
+* unexported
+
+- alle unexported Variablen, Funktionen, Typen, ... sind nur innerhalb des Packetes zu verwenden.
+- werden klein geschrieben
+
+* exported 
+
+- alle exported Elemente können von anderen Packeten verwendet werden
+- diese sind die Schnittstelle des Packets
+- nur wirklich notwendige Elemente sollten exported sein
+
+* Dokumentation
+
+- Dokumentation erfolgt direkt im Code
+- godoc ist das dazugehörige Tool
+- govet prüft auch Dokumentation (alle exported Elemente benötigen Dokumentation)
+- Erstes Wort der Dokumentation muss der Variablen- oder Funktions- oder Typname sein.
+- Dokumentation ist klassischerweise in Englisch
+
+Godoc lokal auf Port 8080 ausführen:
+
+  godoc -http :8080
+
+* Dokumentation
+  // MyVar is used for setting the ... parameter. If it is 1 it is super great
+  // You can set 99 for getting everything in debug modus
+  var MyVar = 1
+
+  // MyType defines the ... it can be used for ...
+  type MyType struct {
+    ...
+  }
+
+  // MyFunc takes a string as an input and does ... with it. If therer is ...
+  // then an error is returned
+  func MyFunc(s string) error {
+    ...
+  }

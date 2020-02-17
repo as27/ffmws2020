@@ -1,0 +1,64 @@
+if
+01 Grundlagen
+
+Andreas Schröpfer
+@lyckade
+
+
+* if else - Normalfall
+
+    var a = 5
+    if a == 5 {
+        // mach etwas
+    } else if a == 6 {
+        // mach was anderes
+    } else {
+        // sonst mach das
+    }
+
+* if mit Zuweisung
+
+- Für die if Schleife kann auch eine Variable erzeugt werden
+- Der Scope ist hier nur innerhalb der Schleife
+
+    if v := a + b; v < 10 {
+        fmt.Println("v ist kleiner 10", v)
+    } else {
+        fmt.Println("v ist größer 10", v)
+    }
+    // v ist hier nicht mehr gültig
+
+
+* switch mit Bedingung
+
+    fmt.Print("Go runs on ")
+    switch os := runtime.GOOS; os {
+    case "darwin":
+        fmt.Println("OS X.")
+    case "linux":
+        fmt.Println("Linux.")
+    default:
+        // freebsd, openbsd,
+        // plan9, windows...
+        fmt.Printf("%s.", os)
+    }
+
+.link https://tour.golang.org/flowcontrol/9    
+
+* switch ohne Bedingung
+
+    t := time.Now()
+    switch {
+    case t.Hour() < 12:
+        fmt.Println("Good morning!")
+    case t.Hour() < 17:
+        fmt.Println("Good afternoon.")
+    default:
+        fmt.Println("Good evening.")
+    }
+
+.link https://tour.golang.org/flowcontrol/11
+
+* switch fallthrough
+
+.play slide/fallthrough/main.go /START OMIT/,/END OMIT/

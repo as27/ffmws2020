@@ -1,0 +1,25 @@
+json Packet
+02 Standardlib
+
+Andreas Schröpfer
+@lyckade
+
+* Das json Packet
+
+- Das json Packet implementiert das encoding und decoding von JSON
+- JSON eignet sich sehr gut als Schnittstelle zwischen Frontend (JavaScript) und Backend (Go).
+- JSON eignet sich sehr gut als Format für config Files. 
+.link https://golang.org/pkg/encoding/json/ Dokumentation
+
+* Von Go nach JSON
+
+- func Marshal über []byte
+- Encoder über io.Writer
+
+* Definition des Typs und Tags
+
+.code slide/sensor/main.go /START1 OMIT/,/END1 OMIT/
+
+* Aufruf im Code
+
+.play slide/sensor/main.go /START2 OMIT/,/END2 OMIT/

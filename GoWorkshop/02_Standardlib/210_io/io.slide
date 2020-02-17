@@ -1,0 +1,64 @@
+io Packet
+02 Standardlib
+
+Andreas Schröpfer
+@lyckade
+
+* Das io Packet
+
+.link https://golang.org/pkg/io/ Dokumentation:
+
+Package io provides basic interfaces to I/O primitives. Its primary job is to wrap existing implementations of such primitives, such as those in package os, into shared public interfaces that abstract the functionality, plus some other related primitives.
+
+Because these interfaces and primitives wrap lower-level operations with various implementations, unless otherwise informed clients should not assume they are safe for parallel execution.
+
+* Das io Packet
+
+- Eines der wichtigsten Packete für Go 
+- Definiert interfaces für I/O Aufgaben
+- Interfaces werden durch andere Packete implementiert
+- Das I/O Packet ist somit die Schnittstelle zwischen vielen Packeten
+
+
+* io.Reader
+
+- lesen von Daten
+- io.Reader als Input
+
+  func parseData(r io.Reader) [][]string {
+      ...
+      return table
+  }
+
+* Datenquellen für io.Reader:
+
+- Datei
+- Webserver
+- Buffer
+- STDIN
+- ...
+
+Alle Typen, welche den io.Reader implementieren können verwendet werden.
+
+* io.Writer
+
+- Analog wie io.Reader nur für Datenziele
+- Datei
+- Webserver
+- Buffer
+- STDOUT
+- ...
+
+* Beispiel
+
+.play slide/split/main.go /START OMIT/,/END OMIT/
+
+* Beispiel fromFile
+
+.play slide/split/main.go /START OMIT/,/END2 OMIT/
+
+* Beispiel STDOUT
+
+.play slide/stdout/main.go /START OMIT/,/END OMIT/
+
+Anstatt STDOUT kann jeder andere io.Writer verwendet werden. 

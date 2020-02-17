@@ -1,0 +1,46 @@
+Projektstruktur
+01 Grundlagen
+
+Andreas Schröpfer
+@lyckade
+
+* Projektbestandteile
+- ein oder mehrere main Packete, welche zu Binaries kompilieren
+- eigene projektspezifische Packete 
+- fremde Packete
+
+* Beispiel Package Oriented Design
+    github.com/servi-io/api
+    ├── cmd/
+    │   ├── servi/
+    │   │   ├── cmdupdate/
+    │   │   └── servi.go
+    │   └── servid/
+    │       ├── tests/
+    │       └── servid.go
+    ├── internal/
+    │   ├── attachments/
+    │   ├── orders/
+    │   │   ├── tags/
+    │   │   └── orders.go
+    │   └── platform/
+    └── vendor/
+        └── github.com/
+            ├── golang/
+            └── prometheus/
+.link https://www.goinggo.net/2017/02/package-oriented-design.html       
+
+* main Packete
+
+- sollten nicht im root Verzeichnis liegen
+- üblich ist das Verzeichnis cmd 
+- das Unterverzeichnis unter cmd bestimmt den Namen des Binary
+
+* Projektspezifische Packete
+- liegen i.d.R. im root Verzeichnis
+- Verzeichnisname = Packetname
+
+* fremde Packete
+
+- bei kleinen Projekten mit wenig Abhängigkeiten benötigt es kein Vendoring
+- größere Projekte mit mehreren Abhängikeiten sollten ein vendor Verzeichnis verwenden.

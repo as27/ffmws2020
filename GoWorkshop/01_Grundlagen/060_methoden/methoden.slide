@@ -1,0 +1,53 @@
+Methoden
+01 Grundlagen
+
+Andreas Schröpfer
+@lyckade
+
+* Methoden
+
+- Methoden sind Funktionen zu einem bestimmten Typ
+- Methoden werden ähnlich wie Funktionen im Code deklariert
+
+* Methoden Deklaration
+
+.play slide/punkt/main.go
+
+* Methoden Deklaration
+
+.play slide/celsius/main.go
+
+* Methode String()
+
+- wird vom fmt Package verwendet um Typen als String in der Ausgabe anzuzeigen
+- wird einem Typen die Methode String() hinzugefügt so wird diese verwendet
+- Typen ohne String() Methode werden anhand des Basistypen gerendert
+
+* Methode String()
+
+.play slide/user/main.go
+
+* Idiomatic Go 
+
+- In Go wird nicht this oder self verwendet
+- Einfache Abkürzungen machen den Code lesbarer
+
+ func (u User) Methode(){}
+ func (s Sensor) Methode(){}
+ func (b Botty) Methode(){}
+
+* Pointer
+
+Pointer wurden bis hier noch nicht behandelt. Dies sind Zeiger auf einen Platz im Arbeitsspeicher. D.h. es wird nicht die Variable kopiert, sondern nur auf den Platz im Arbeitsspeicher verwiesen. In folgenden Fällen wird dies verwendet:
+
+- wenn innerhalb des Types durch die Methode Daten verändert werden.
+- wenn die Variable sehr groß ist.
+
+
+Hierfür wird dem Typ ein * voran getellt:
+
+   func (us *Users) Add(u User){...}
+
+* Beispiel   
+
+.play slide/db/main.go /START OMIT/,/END OMIT/

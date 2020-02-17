@@ -1,0 +1,83 @@
+Tooling
+01 Grundlagen
+
+Andreas Schröpfer
+@lyckade
+
+* go test
+
+Eine Testdatei wird immer zu einer Quelldatei erzeugt. Dafür wird dem Dateinamen `_test` angehängt.
+
+Tests für `main.go` befinden sich in der Datei `main_test.go` oder bei `server.go` in `server_test.go`.
+
+Auf diese Weise werden die zugehörigen Testdateien im Verzeichnig gleich bei der Go Datei angezeigt. Ein Verzeichnis kann z.B. so aussehen:
+
+  ohnetest.go
+  main.go
+  main_test.go
+  programm.go
+  programm_test.go
+
+*  Test über die Commandozeile
+
+Die Go Tests werden in der Regel über einen Terminal gestartet. Der Befehl hierfür ist 
+
+  go test
+
+Damit werden alle Tests aus dem aktuellen Verzeichnises durchgeführt.
+
+Möchte man alle Tests eines Projektes ausführen so verwendet man.
+
+  go test ./...
+
+* go benchmark  
+
+- Definition innerhalb des Test files
+
+  func BenchmarkFunction(b *testing.B) {
+    for i := 0; i < b.N; i++ {
+      myFunc()
+    }
+  }
+
+- Aufruf mit -bench
+
+  go test -bench .
+
+  BenchmarkSplit-4         2000000               690 ns/op
+  PASS
+
+- 4 Processes (GOMAXPROCS)
+- 2.000.000 Aufrufe im Benchmark (b.N)
+- 690 nanosekunden pro Operation
+
+* Test in Visual Studio Code
+
+VS Code unterstützt die Tests in Go. Sobald die Go Erweiterung installiert ist, erkennt VS Code automatisch die Testdateien und die dazugehörigen Tests. Oberhalb der Funktionen werden kleine Links eingeblendet über welche die einzelnen Tests direkt aus VS Code aus gestartet werden können.   
+
+* gofmt und goimports
+
+- guter Go Code ist einheitlich formatiert
+- die Regeln für die Formatierung wurden durch das Go Team definiert
+- um das nicht selber machen zu müssen gibt es ein Tool 
+
+  go fmt meinedatei.go
+  go fmt pfad/zum/ordner/
+
+- die Dateien werden formatiert und gespeichert
+- gute IDEs können diesen Schritt automatisch durchführen
+
+* govet
+
+Für idiomatischen Go Code gibt es noch weitere Empfehlungen. Diese können mit 
+  
+  go vet
+  
+aufgerufen werden. VS Code führt auch diesen Befehl nach jedem Speichern aus und markiert die Zeilen, welche Anmerkungen hierzu besitzen.
+
+* go run
+
+Ein Go Programm kann auch direkt ausgeführt werden.
+
+  go run main.go
+

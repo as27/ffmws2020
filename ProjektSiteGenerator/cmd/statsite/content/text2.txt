@@ -1,0 +1,13 @@
+Title: Text 2
+
+---
+
+# Text 2
+
+Folgende Punkte sollten wir beachten:
+
+* Punkt 1
+* Punkt 2
+* ...
+
+So ist es
