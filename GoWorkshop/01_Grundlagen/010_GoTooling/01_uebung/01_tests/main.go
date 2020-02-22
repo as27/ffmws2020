@@ -22,5 +22,5 @@ func main() {
 }
 
 func getHelloString() string {
-	return "Hello World!"
+	return "Hello Germany!"
 }

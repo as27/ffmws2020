@@ -8,6 +8,7 @@ func TestGetHelloString(t *testing.T) {
 	if got != expect {
 		t.Errorf("\nExpect: %s \nGot: %s", expect, got)
 	}
+
 }
 
 func Benchmark(b *testing.B) {
